@@ -122,14 +122,14 @@ function checkKey() {
     const input = document.getElementById('adminKey').value;
     const usedFirst = localStorage.getItem('usedKey1');
 
-    if (input === "SHIKHA2026") {
+    if (input === "Shikha") {
         if (usedFirst) { alert("This key has EXPIRED!"); }
         else {
             localStorage.setItem('usedKey1', 'true');
             localStorage.removeItem('shikhaFinalVal');
             location.reload();
         }
-    } else if (input === "yojashv2020") {
+    } else if (input === "Buddy") {
         localStorage.removeItem('shikhaFinalVal');
         localStorage.removeItem('usedKey1'); 
         location.reload();
