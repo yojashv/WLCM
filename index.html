@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Universe</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="gate-container">
+        <div class="gate-half left"></div>
+        <div class="gate-half right"></div>
+        <div class="gate-content">
+            <h1 class="gate-title">Identity Verified</h1>
+            <p style="letter-spacing: 3px; font-size: 0.8rem; opacity: 0.7;">ACCESSING UNIVERSE...</p>
+        </div>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <div class="glass-card" id="card">
+        <div id="setup-view">
+            <h1>Hi Shikha! ❤️</h1>
+            <p>How much do I matter in your life?</p>
+            <div id="percent-display">50%</div>
+            <div class="slider-wrapper">
+                <input type="range" min="0" max="100" value="50" class="slider" id="mainSlider">
+            </div>
+            <button class="btn" onclick="submitChoice()">Lock My Answer</button>
+        </div>
+
+        <div id="result-view" style="display: none;"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
