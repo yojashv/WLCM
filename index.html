@@ -13,8 +13,8 @@
         <div class="gate-half left"></div>
         <div class="gate-half right"></div>
         <div class="gate-content">
-            <h1 class="gate-title">Identity Verified</h1>
-            <p style="letter-spacing: 3px; font-size: 0.8rem; opacity: 0.7;">ACCESSING UNIVERSE...</p>
+            <h1 class="gate-title" id="gate-text">Identity Verified</h1>
+            <p style="letter-spacing: 3px; font-size: 0.8rem; opacity: 0.7;">INITIALIZING UNIVERSE...</p>
         </div>
     </div>
 
@@ -22,7 +22,7 @@
 
     <div class="glass-card" id="card">
         <div id="setup-view">
-            <h1>Hi Shikha! ❤️</h1>
+            <h1 id="greeting">Hi Shikha! ❤️</h1>
             <p>How much do I matter in your life?</p>
             <div id="percent-display">50%</div>
             <div class="slider-wrapper">
@@ -31,7 +31,19 @@
             <button class="btn" onclick="submitChoice()">Lock My Answer</button>
         </div>
 
-        <div id="result-view" style="display: none;"></div>
+        <div id="result-view" style="display: none;">
+            <h1 style="font-size: 2.5rem;">Access Locked</h1>
+            <div id="final-percent" class="glow-text"></div>
+            <div id="typewriter-msg"></div>
+            <div id="post-result" style="display:none;">
+                <div class="reset-link" onclick="openWhatsApp()">Request a Reset Code</div>
+                <div id="admin-panel">
+                    <input type="text" id="adminKey" class="admin-input" placeholder="Enter Secret Code">
+                    <br>
+                    <button class="btn" style="padding: 10px 25px; font-size: 0.8rem;" onclick="checkKey()">Unlock</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>

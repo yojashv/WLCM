@@ -40,16 +40,23 @@ body, html {
 .gate-open .right { transform: translateX(100%); }
 .gate-open .gate-content { opacity: 0; pointer-events: none; }
 
-/* --- MAIN GLASS UI --- */
+/* --- GLASS CARD PULSE --- */
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 15px 50px rgba(0,0,0,0.8); }
+    50% { transform: scale(1.01); box-shadow: 0 15px 60px rgba(0, 212, 255, 0.15); }
+    100% { transform: scale(1); box-shadow: 0 15px 50px rgba(0,0,0,0.8); }
+}
+
 .glass-card {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 30px; padding: 40px; text-align: center;
-    width: 90%; max-width: 450px; box-shadow: 0 15px 50px rgba(0,0,0,0.8);
+    width: 90%; max-width: 450px;
+    animation: pulse 5s infinite ease-in-out;
 }
 
-h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; color: var(--blue); margin: 0 0 10px 0; }
+h1 { font-family: 'Dancing Script', cursive; font-size: 3.2rem; color: var(--blue); margin: 0 0 10px 0; }
 p { font-weight: 300; opacity: 0.8; }
 
 .slider-wrapper { margin: 40px 0; }
@@ -62,7 +69,7 @@ p { font-weight: 300; opacity: 0.8; }
     background: var(--glow); box-shadow: 0 0 20px var(--glow);
 }
 
-#percent-display { font-size: 3.5rem; font-weight: 700; color: var(--glow); margin: 10px 0; }
+#percent-display, #final-percent { font-size: 3.5rem; font-weight: 700; color: var(--glow); margin: 10px 0; }
 
 .btn {
     background: transparent; border: 2px solid var(--blue); color: white;
@@ -71,7 +78,7 @@ p { font-weight: 300; opacity: 0.8; }
 }
 .btn:hover { background: var(--blue); color: black; box-shadow: 0 0 40px var(--blue); transform: scale(1.05); }
 
-#final-msg { line-height: 1.8; font-size: 1.15rem; color: #eee; margin-top: 15px; }
+#typewriter-msg { line-height: 1.8; font-size: 1.15rem; color: #eee; min-height: 80px; margin-top: 15px; }
 .reset-link { margin-top: 30px; font-size: 0.8rem; color: var(--blue); text-decoration: underline; cursor: pointer; opacity: 0.7; }
 #admin-panel { display: none; margin-top: 20px; border-top: 1px solid #333; padding-top: 20px; }
 .admin-input { background: rgba(255,255,255,0.1); border: 1px solid #444; color: white; padding: 10px; border-radius: 10px; width: 80%; margin-bottom: 10px; text-align: center; }

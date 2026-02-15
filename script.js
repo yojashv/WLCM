@@ -3,11 +3,37 @@ const display = document.getElementById('percent-display');
 const setupView = document.getElementById('setup-view');
 const resultView = document.getElementById('result-view');
 
-// INFO SETUP
 const yourPhoneNumber = "916232092526"; 
 const yourName = "Yojashv";
 
-// 1. Automatic Gate Logic (0.5 second delay)
+// 1. Dynamic Greeting
+function setDynamicGreeting() {
+    const hour = new Date().getHours();
+    const greet = document.getElementById('greeting');
+    if (hour < 12) greet.innerHTML = "Good Morning ☀️, Shikha! ❤️";
+    else if (hour < 17) greet.innerHTML = "Good Afternoon 🌤️, Shikha! ❤️";
+    else greet.innerHTML = "Good Evening 🌙, Shikha! ❤️";
+}
+
+// 2. Typewriter Effect
+function typeWriter(text, elementId, speed = 50) {
+    let i = 0;
+    const element = document.getElementById(elementId);
+    element.innerHTML = "";
+    function type() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        } else {
+            // Show reset/admin panel after typing finishes
+            document.getElementById('post-result').style.display = 'block';
+        }
+    }
+    type();
+}
+
+// 3. Automatic Gate (0.5s delay)
 function autoOpenGate() {
     const gateContainer = document.getElementById('gate-container');
     setTimeout(() => {
@@ -16,14 +42,14 @@ function autoOpenGate() {
     }, 500); 
 }
 
-// 2. Starfield Animation
+// 4. Starfield Animation
 function initStars() {
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
     const stars = [];
     for (let i = 0; i < 150; i++) {
-        stars.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, size: Math.random()*1.5, speed: Math.random()*0.4 });
+        stars.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, size: Math.random()*1.5, speed: Math.random()*0.3 });
     }
     function animate() {
         ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle = "white";
@@ -36,18 +62,10 @@ function initStars() {
     animate();
 }
 
-// 3. Slider Live Update
-if(slider) {
-    slider.oninput = function() {
-        display.innerHTML = this.value + "%";
-        const hue = 200 + (this.value * 1.6); 
-        display.style.color = `hsl(${hue}, 100%, 60%)`;
-    }
-}
-
-// 4. On Page Load
+// 5. On Page Load
 window.onload = function() {
     initStars();
+    setDynamicGreeting();
     const savedVal = localStorage.getItem('shikhaFinalVal');
     if (savedVal) {
         document.getElementById('gate-container').style.display = 'none';
@@ -57,7 +75,16 @@ window.onload = function() {
     }
 }
 
-// 5. Submit Choice (Sends to Formspree as Shikha)
+// Slider Live Color Change
+if(slider) {
+    slider.oninput = function() {
+        display.innerHTML = this.value + "%";
+        const hue = 200 + (this.value * 1.6); 
+        display.style.color = `hsl(${hue}, 100%, 60%)`;
+    }
+}
+
+// 6. Submit Choice
 function submitChoice() {
     const val = slider.value;
     localStorage.setItem('shikhaFinalVal', val);
@@ -70,31 +97,22 @@ function submitChoice() {
     showFinalUI(val);
 }
 
-// 6. UI Update (Shikha's name restored)
+// 7. Show Result with Typewriter Message
 function showFinalUI(val) {
     setupView.style.display = "none";
     resultView.style.display = "block";
+    document.getElementById('final-percent').innerHTML = val + "%";
 
-    let msg = "";
-    if (val == 100) msg = "<b>Shikha, some things are written in the stars... you make the world feel like home. ❤️</b>";
-    else if (val >= 80) msg = "You mean the world to me, Shikha. You're a beautiful creature! ✨";
-    else if (val >= 50) msg = "You're a huge part of my world, Shikha! 🌸";
-    else msg = "You're a great friend, Shikha! 😊";
+    let message = "";
+    if (val == 100) message = "Shikha, some things are written in the stars... you make the world feel like home. ❤️";
+    else if (val >= 80) message = "You mean the world to me, Shikha. You're a beautiful creature! ✨";
+    else if (val >= 50) message = "You're a huge part of my world, Shikha! 🌸";
+    else message = "You're a great friend, Shikha! 😊";
 
-    resultView.innerHTML = `
-        <h1 style="font-size: 2.5rem;">Access Locked</h1>
-        <div id="percent-display">${val}%</div>
-        <div id="final-msg">${msg}</div>
-        <div class="reset-link" onclick="openWhatsApp()">Request a Reset Code</div>
-        <div id="admin-panel">
-            <input type="text" id="adminKey" class="admin-input" placeholder="Enter Secret Code">
-            <br>
-            <button class="btn" style="padding: 10px 25px; font-size: 0.8rem;" onclick="checkKey()">Unlock</button>
-        </div>
-    `;
+    typeWriter(message, 'typewriter-msg', 60);
 }
 
-// 7. Security & Reset Logic
+// 8. Admin & Reset Logic
 function openWhatsApp() {
     document.getElementById('admin-panel').style.display = 'block';
     window.open(`https://wa.me/${yourPhoneNumber}?text=Hey%20${yourName}!%20I%20need%20a%20new%20reset%20code!%20🥺`, '_blank');
@@ -105,7 +123,7 @@ function checkKey() {
     const usedFirst = localStorage.getItem('usedKey1');
 
     if (input === "SHIKHA2026") {
-        if (usedFirst) { alert("This key has EXPIRED! Ask Yojashv for the second key."); }
+        if (usedFirst) { alert("This key has EXPIRED!"); }
         else {
             localStorage.setItem('usedKey1', 'true');
             localStorage.removeItem('shikhaFinalVal');
