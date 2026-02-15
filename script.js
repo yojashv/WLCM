@@ -3,7 +3,7 @@ const display = document.getElementById('percent-display');
 const setupView = document.getElementById('setup-view');
 const resultView = document.getElementById('result-view');
 
-const yourPhoneNumber = "916232092526"; 
+const yourPhoneNumber = "919407384878"; 
 const yourName = "Yojashv";
 
 // 1. Dynamic Greeting
