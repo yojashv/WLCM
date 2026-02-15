@@ -104,8 +104,8 @@ function showFinalUI(val) {
     document.getElementById('final-percent').innerHTML = val + "%";
 
     let message = "";
-    if (val == 100) message = "Shikha, some things are written in the stars... you make the world feel like home. ❤️";
-    else if (val >= 80) message = "You mean the world to me, Shikha. You're a beautiful creature! ✨";
+    if (val >= 90) message = "Shikha, some things are written in the stars... you make the world feel like home. ❤️";
+    else if (val >= 70) message = "You mean the world to me, Shikha. You're a beautiful creature! ✨";
     else if (val >= 50) message = "You're a huge part of my world, Shikha! 🌸";
     else message = "You're a great friend, Shikha! 😊";
 
